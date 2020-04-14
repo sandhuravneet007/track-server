@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri = '';
+const mongoUri = 'mongodb+srv://sandhuravneet007:passwordpassword@cluster0-k1nd8.mongodb.net/test?retryWrites=true&w=majority';
 if (!mongoUri) {
   throw new Error(
     `MongoURI was not supplied.  Make sure you watch the video on setting up Mongo DB!`
@@ -22,7 +22,8 @@ if (!mongoUri) {
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true
-});
+}).then(r =>{ return r}).catch();
+
 mongoose.connection.on('connected', () => {
   console.log('Connected to mongo instance');
 });
